@@ -22,13 +22,14 @@ def run_check(li: list):
 
 
 def check_win():
-    # TODO: Complete checking function
-    rows = [[0, 0], [0, 1], [0, 2]]
-    columns = [[0, 0], [1, 0], [2, 0]]
+    rows = [[0, 0], [0, 1], [0, 2]], [[1, 0], [1, 1], [1, 2]], [[2, 0], [2, 1], [2, 2]]
+    columns = [[0, 0], [1, 0], [2, 0]], [[0, 1], [1, 1], [2, 1]], [[0, 2], [1, 2], [2, 2]]
     diagonal1 = [[0, 0], [1, 1], [2, 2]]
     diagonal2 = [[0, 2], [1, 1], [2, 0]]
 
-    if (run_check(rows)) or (run_check(columns)) or (run_check(diagonal1)) or (run_check(diagonal2)):
+    if (run_check(rows[0])) or (run_check(rows[1])) or (run_check(rows[2]))\
+            or (run_check(columns[0])) or (run_check(columns[1])) or (run_check(columns[2])) or \
+            (run_check(diagonal1)) or (run_check(diagonal2)):
         label["text"] = "Game over. Restart?"
         label.bind("<Button-1>", restart)
 
