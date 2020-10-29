@@ -14,9 +14,9 @@ def click(row, col):
     global x_turn
     global label
     if buttons[row][col]["text"] == "-":
-        label["text"] = "Space chosen."
         buttons[row][col]["text"] = "X" if x_turn is True else "O"
         x_turn = not x_turn
+        label["text"] = "Crosses' turn." if x_turn else "Naught's turn."
     else:
         label["text"] = "Invalid space."
 
