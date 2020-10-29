@@ -11,6 +11,27 @@ buttons = []
 turns = 0
 
 
+def run_check(li: list):
+    string = ""
+    for space in li:
+        string += buttons[space[0]][space[1]]['text']
+    print(string)
+    if string is "XXX" or "OOO":
+        return True
+    return False
+
+
+def check_win():
+    rows = [[0, 0], [0, 1], [0, 2]]
+    columns = [[0, 0], [1, 0], [2, 0]]
+    diagonal1 = [[0, 0], [1, 1], [2, 2]]
+    diagonal2 = [[0, 2], [1, 1], [2, 0]]
+
+    if run_check(rows) or run_check(columns) or run_check(diagonal1) or run_check(diagonal2) is True:
+        label["text"] = "Game over. Restart?"
+        label.bind("<Button-1>", restart)
+
+
 def click(row, col):
     global x_turn
     global label
@@ -24,6 +45,8 @@ def click(row, col):
     else:
         label["text"] = "Invalid space."
 
+    check_win()
+
     if turns >= 9:
         label["text"] = "Game over. Restart?"
         label.bind("<Button-1>", restart)
@@ -33,6 +56,8 @@ def restart(event):
     for row in buttons:
         for col in row:
             col["text"] = "-"
+    label.unbind("<Button-1>")
+    label["text"] = "Crosses' turn." if x_turn else "Naught's turn."
 
 
 def setup():
